@@ -1,0 +1,646 @@
+Explicit
+Dim ador As Recordset
+Dim adors1 As Recordset
+Dim ADOption ORS2 As Recordset
+Private Sub Combo1_Click()
+If Val(Combo1.Text) = 1 Then
+Text3(1).Visible = False
+Text3(2).Visible = False
+Text3(3).Visible = False
+Text3(4).Visible = False
+Text3(5).Visible = False
+Text3(0).Visible = True
+Combo3(1).Visible = False
+Combo3(2).Visible = False
+Combo3(3).Visible = False
+Combo3(4).Visible = False
+Combo3(5).Visible = False
+Combo3(0).Visible = True
+Text4(1).Visible = False
+Text4(2).Visible = False
+Text4(3).Visible = False
+Text4(4).Visible = False
+Text4(5).Visible = False
+Text4(0).Visible = True
+Text6(1).Visible = False
+Text6(2).Visible = False
+Text6(3).Visible = False
+Text6(4).Visible = False
+Text6(5).Visible = False
+Text6(0).Visible = True
+End If
+If Val(Combo1.Text) = 2 Then
+Text3(1).Visible = True
+Text3(2).Visible = False
+Text3(3).Visible = False
+Text3(4).Visible = False
+Text3(5).Visible = False
+Text3(0).Visible = True
+Combo3(1).Visible = True
+Combo3(2).Visible = False
+Combo3(3).Visible = False
+Combo3(4).Visible = False
+Combo3(5).Visible = False
+Combo3(0).Visible = True
+Text4(1).Visible = True
+Text4(2).Visible = False
+Text4(3).Visible = False
+Text4(4).Visible = False
+Text4(5).Visible = False
+Text4(0).Visible = True
+Text6(1).Visible = True
+Text6(2).Visible = False
+Text6(3).Visible = False
+Text6(4).Visible = False
+Text6(5).Visible = False
+Text6(0).Visible = True
+End If
+If Val(Combo1.Text) = 3 Then
+Text3(1).Visible = True
+Text3(2).Visible = True
+Text3(3).Visible = False
+Text3(4).Visible = False
+Text3(5).Visible = False
+Text3(0).Visible = True
+Combo3(1).Visible = True
+Combo3(2).Visible = True
+Combo3(3).Visible = False
+Combo3(4).Visible = False
+Combo3(5).Visible = False
+Combo3(0).Visible = True
+Text4(1).Visible = True
+Text4(2).Visible = True
+Text4(3).Visible = False
+Text4(4).Visible = False
+Text4(5).Visible = False
+Text4(0).Visible = True
+Text6(1).Visible = True
+Text6(2).Visible = True
+Text6(3).Visible = False
+Text6(4).Visible = False
+Text6(5).Visible = False
+Text6(0).Visible = True
+End If
+If Val(Combo1.Text) = 4 Then
+Text3(1).Visible = True
+Text3(2).Visible = True
+Text3(3).Visible = True
+Text3(4).Visible = False
+Text3(5).Visible = False
+Text3(0).Visible = True
+Combo3(1).Visible = True
+Combo3(2).Visible = True
+Combo3(3).Visible = True
+Combo3(4).Visible = False
+Combo3(5).Visible = False
+Combo3(0).Visible = True
+Text4(1).Visible = True
+Text4(2).Visible = True
+Text4(3).Visible = True
+Text4(4).Visible = False
+Text4(5).Visible = False
+Text4(0).Visible = True
+Text6(1).Visible = True
+Text6(2).Visible = True
+Text6(3).Visible = True
+Text6(4).Visible = False
+Text6(5).Visible = False
+Text6(0).Visible = True
+End If
+If Val(Combo1.Text) = 5 Then
+Text3(1).Visible = True
+Text3(2).Visible = True
+Text3(3).Visible = True
+Text3(4).Visible = True
+Text3(5).Visible = False
+Text3(0).Visible = True
+Combo3(1).Visible = True
+Combo3(2).Visible = True
+Combo3(3).Visible = True
+Combo3(4).Visible = True
+Combo3(5).Visible = False
+Combo3(0).Visible = True
+Text4(1).Visible = True
+Text4(2).Visible = True
+Text4(3).Visible = True
+Text4(4).Visible = True
+Text4(5).Visible = False
+Text4(0).Visible = True
+Text6(1).Visible = True
+Text6(2).Visible = True
+Text6(3).Visible = True
+Text6(4).Visible = True
+Text6(5).Visible = False
+Text6(0).Visible = True
+End If
+If Val(Combo1.Text) = 6 Then
+Text3(1).Visible = True
+Text3(2).Visible = True
+Text3(3).Visible = True
+Text3(4).Visible = True
+Text3(5).Visible = True
+Text3(0).Visible = True
+Combo3(1).Visible = True
+Combo3(2).Visible = True
+Combo3(3).Visible = True
+Combo3(4).Visible = True
+Combo3(5).Visible = True
+Combo3(0).Visible = True
+Text4(1).Visible = True
+Text4(2).Visible = True
+Text4(3).Visible = True
+Text4(4).Visible = True
+Text4(5).Visible = True
+Text4(0).Visible = True
+Text6(1).Visible = True
+Text6(2).Visible = True
+Text6(3).Visible = True
+Text6(4).Visible = True
+Text6(5).Visible = True
+Text6(0).Visible = True
+End If
+End Sub
+Private Sub Combo3_Click(Index As Integer)
+Dim ADORS2 As ADODB.Recordset
+Dim var2 As Integer
+Dim var3 As Integer
+Dim db As Connection
+Set db = New Connection
+db.Open "Provider=MSDASQL.1;Persist Security Info=False;Data Source=NATH"
+Set ADORS2 = New ADODB.Recordset
+Adodc1.RecordSource = "select * from fixed where f_code ='" &
+RTrim(LTrim(DBCombo1.Text)) & "' and tdate = '" & RTrim(LTrim(Text8.Text)) & "'"
+Adodc1.Refresh
+ADORS2.Open "select * from fixed", db, adOpenStatic, adLockOptimistic
+var2 = ADORS2.Fields!t_res_eco_seat
+Text6(Index).Text = var2 + 1
+End Sub
+Private Sub Command1_Click()
+Text2.Text = Val(Text4(0).Text) + Val(Text4(1).Text) + Val(Text4(2).Text) + Val(Text4(3).Text)
++ Val(Text4(4).Text) + Val(Text4(5).Text)
+End Sub
+Private Sub DBCombo1_Change()
+On Error Resume Next
+MSRDC 1.Result Set.Bookmark = DBCombo1.SelectedItem
+End Sub
+Private Sub DBCombo1_Click(Area As Integer)
+On Error Resume Next
+MSRDC1.Resultset.Bookmark = DBCombo1.SelectedItem
+End Sub
+Private Sub Form_Load()
+Dim db As Connection
+Set db = New Connection
+db.Open "Provider=MSDASQL.1;Persist Security Info=False;Data Source=NATH"
+Set adors = New Recordset
+ADORS2.Open "select
+ticket_no,pnr,flight_id,source,destination,t_date,d_time,a_time,fare1,fare2,fare3,fare4,fare5,far
+e6,class,age1,sex1,seat1,age1,sex1,seat1,age2,sex2,seat2,age3,sex3,seat3,age4,sex4,seat4,age5,
+sex5,seat5,age6,sex6,seat6,passenger from ticket_report", db, adOpenStatic, adLockOptimistic
+Dim otext As TextBox
+For Each otext In Me.Text1
+Set otext.DataSource = adors
+Next
+db.Open "Provider=MSDASQL.1;Persist Security Info=False;Data Source=NATH"
+Set adors = New Recordset
+Set adors1 = New Recordset
+Set ADORS2 = New Recordset
+adors1.Open "select max(TICKET_NO)from ticket_report", db, adOpenStatic,
+adLockOptimistic
+ADORS2.Open "select max(pnr) from ticket_report", db, adOpenStatic, adLockOptimistic
+var1 = adors1.Fields(0)
+var2 = ADORS2.Fields(0)
+Text1(0) = var1 + 1
+Text1(17) = var2 + 1
+adors.Open "select * FROM FARE", db, adOpenStatic, adLockOptimistic
+Set Text1(1).DataSource = adors
+Set Text1(2).DataSource = adors
+Set Text1(3).DataSource = adors
+Set Text1(4).DataSource = adors
+End Sub
+Private Sub PRINT_Click()
+Ticket_report.Print
+End Sub
+Private Sub save_Click()
+adors.UpdateBatch adAffectAllChapters
+End Sub
+Text3_LostFocus(Index As Integer)
+Dim temp As Double
+If Val(Text3(Index).Text) > 60 Then
+temp = (5 * Val(Text5.Text) / 100)
+MsgBox (temp)
+Text4(Index).Text = temp
+Else
+temp = Val(Text5.Text)
+End If
+Text4(Index).Text = temp
+End Sub
+
+Coding for Cancellation
+
+Option Explicit
+Dim adors As Recordset
+Private Sub CANCEL_Click()
+Dim SQL As String
+Dim db As Connection
+Set db = New Connection
+db.Open "Provider=MSDASQL.1;Persist Security Info=False;Data Source=NATH"
+SQL = "DELETE FROM TICKET_REPORT WHERE PNR='" & txtfields(0).Text & "'"
+db.Execute SQL
+End Sub
+Private Sub Command3_Click()
+Unload Me
+End Sub
+Private Sub Form_Load()
+Dim db As Connection
+Set db = New Connection
+db.Open "Provider=MSDASQL.1;Persist Security Info=False;Data Source=NATH"
+Set adors = New Recordset
+adors.Open "select
+CUST_CODE,CLASS,SEAT_NO,DAYS_LEFT,HOURS_LEFT,BASIC_AMMOUNT,CANC
+EL_AMMOUNT FROM REFUND_AMMOUNT", db, adOpenStatic, adLockOptimistic
+Dim otext As TextBox
+For Each otext In Me.txtfields
+Set otext.DataSource = adors
+Next
+End Sub
+Private Sub SHOW_Click()
+Dim ADORS2 As Recordset
+Dim db As Connection
+Set db = New Connection
+db.Open "Provider=MSDASQL.1;Persist Security Info=False;Data Source=NATH"
+Set ADORS2 = New Recordset
+ADORS2.Open "select * from TICKET_REPORT WHERE PNR = ' " & txtfields(0).Text & " '
+", db, adOpenStatic, adLockOptimistic
+'txtfields(0) = (ADORS2.Fields(1))
+txtfields(1) = (ADORS2.Fields(8))
+txtfields(2) = (ADORS2.Fields(7))
+txt_basic_ammount.Text = (ADORS2.Fields(9))
+End Sub
+Private Sub txtfields_LostFocus(Index As Integer)
+Dim db As Connection
+If Index = 0 Then
+Set db = New Connection
+db.Open "Provider=MSDASQL.1;Persist Security Info=False;Data Source=NATH"
+Set adors = New Recordset
+adors.Open "select
+CUST_CODE,CLASS,SEAT_NO,DAYS_LEFT,HOURS_LEFT,BASIC_AMMOUNT,CANC
+EL_AMMOUNT FROM REFUND_AMMOUNT where cust_code = ('" & txtfields(0).Text &
+"')", db, adOpenStatic, adLockOptimistic
+Dim otext As TextBox
+For Each otext In Me.txtfields
+Set otext.DataSource = adors
+Next
+End If
+End Sub
+Private Sub txtsub_Click()
+txtresult(7).Text = Val(txt_basic_ammount.Text) - Val(txt_cancel_ammount(6).Text)
+End Sub
+Coding for Enquiry 
+Option Explicit
+Dim adors As Recordset
+Private Sub add_Click(Index As Integer)
+With adors
+.AddNew
+End With
+End Sub
+Private Sub cl_Click(Index As Integer)
+Unload Me
+End Sub
+Private Sub CONFIRM_Click()
+Dim ADORS2 As Recordset
+Dim db As Connection
+Set db = New Connection
+db.Open "Provider=MSDASQL.1;Persist Security Info=False;Data Source=NATH"
+Set ADORS2 = New Recordset
+ADORS2.Open "select * from TICKET_REPORT WHERE TICKET_NO ='" &
+txtfields(7).Text & "'", db, adOpenStatic, adLockOptimistic
+txtfields(4) = (ADORS2.Fields(1))
+txtfields(1) = (ADORS2.Fields(2))
+txtfields(2) = (ADORS2.Fields(9))
+txtfields(3) = (ADORS2.Fields(7))
+txtfields(5) = (ADORS2.Fields(5))
+txtfields(6) = (ADORS2.Fields(6))
+End Sub
+Option Explicit
+Dim adors As Recordset
+Dim adors1 As Recordset
+Dim ADORS2 As Recordset
+Private Sub Combo1_Click()
+If Val(Combo1.Text) = 1 Then
+Text3(1).Visible = False
+Text3(2).Visible = False
+Text3(3).Visible = False
+Text3(4).Visible = False
+Text3(5).Visible = False
+Text3(0).Visible = True
+Combo3(1).Visible = False
+Combo3(2).Visible = False
+Combo3(3).Visible = False
+Combo3(4).Visible = False
+Combo3(5).Visible = False
+Combo3(0).Visible = True
+Text4(1).Visible = False
+Text4(2).Visible = False
+Text4(3).Visible = False
+Text4(4).Visible = False
+Text4(5).Visible = False
+Text4(0).Visible = True
+Text6(1).Visible = False
+Text6(2).Visible = False
+Text6(3).Visible = False
+Text6(4).Visible = False
+Text6(5).Visible = False
+Text6(0).Visible = True
+End If
+If Val(Combo1.Text) = 2 Then
+Text3(1).Visible = True
+Text3(2).Visible = False
+Text3(3).Visible = False
+Text3(4).Visible = False
+Text3(5).Visible = False
+Text3(0).Visible = True
+Combo3(1).Visible = True
+Combo3(2).Visible = False
+Combo3(3).Visible = False
+Combo3(4).Visible = False
+Combo3(5).Visible = False
+Combo3(0).Visible = True
+Text4(1).Visible = True
+Text4(2).Visible = False
+Text4(3).Visible = False
+Text4(4).Visible = False
+Text4(5).Visible = False
+Text4(0).Visible = True
+Text6(1).Visible = True
+Text6(2).Visible = False
+Text6(3).Visible = False
+Text6(4).Visible = False
+Text6(5).Visible = False
+Text6(0).Visible = True
+End If
+If Val(Combo1.Text) = 3 Then
+Text3(1).Visible = True
+Text3(2).Visible = True
+Text3(3).Visible = False
+Text3(4).Visible = False
+Text3(5).Visible = False
+Text3(0).Visible = True
+Combo3(1).Visible = True
+Combo3(2).Visible = True
+Combo3(3).Visible = False
+Combo3(4).Visible = False
+Combo3(5).Visible = False
+Combo3(0).Visible = True
+Text4(1).Visible = True
+Text4(2).Visible = True
+Text4(3).Visible = False
+Text4(4).Visible = False
+Text4(5).Visible = False
+Text4(0).Visible = True
+Text6(1).Visible = True
+Text6(2).Visible = True
+Text6(3).Visible = False
+Text6(4).Visible = False
+Text6(5).Visible = False
+Text6(0).Visible = True
+End If
+If Val(Combo1.Text) = 4 Then
+Text3(1).Visible = True
+Text3(2).Visible = True
+Text3(3).Visible = True
+Text3(4).Visible = False
+Text3(5).Visible = False
+Text3(0).Visible = True
+Combo3(1).Visible = True
+Combo3(2).Visible = True
+Combo3(3).Visible = True
+Combo3(4).Visible = False
+Combo3(5).Visible = False
+Combo3(0).Visible = True
+Text4(1).Visible = True
+Text4(2).Visible = True
+Text4(3).Visible = True
+Text4(4).Visible = False
+Text4(5).Visible = False
+Text4(0).Visible = True
+Text6(1).Visible = True
+Text6(2).Visible = True
+Text6(3).Visible = True
+Text6(4).Visible = False
+Text6(5).Visible = False
+Text6(0).Visible = True
+End If
+If Val(Combo1.Text) = 5 Then
+Text3(1).Visible = True
+Text3(2).Visible = True
+Text3(3).Visible = True
+Text3(4).Visible = True
+Text3(5).Visible = False
+Text3(0).Visible = True
+Combo3(1).Visible = True
+Combo3(2).Visible = True
+Combo3(3).Visible = True
+Combo3(4).Visible = True
+Combo3(5).Visible = False
+Combo3(0).Visible = True
+Text4(1).Visible = True
+Text4(2).Visible = True
+Text4(3).Visible = True
+Text4(4).Visible = True
+Text4(5).Visible = False
+Text4(0).Visible = True
+Text6(1).Visible = True
+Text6(2).Visible = True
+Text6(3).Visible = True
+Text6(4).Visible = True
+Text6(5).Visible = False
+Text6(0).Visible = True
+End If
+If Val(Combo1.Text) = 6 Then
+Text3(1).Visible = True
+Text3(2).Visible = True
+Text3(3).Visible = True
+Text3(4).Visible = True
+Text3(5).Visible = True
+Text3(0).Visible = True
+Combo3(1).Visible = True
+Combo3(2).Visible = True
+Combo3(3).Visible = True
+Combo3(4).Visible = True
+Combo3(5).Visible = True
+Combo3(0).Visible = True
+Text4(1).Visible = True
+Text4(2).Visible = True
+Text4(3).Visible = True
+Text4(4).Visible = True
+Text4(5).Visible = True
+Text4(0).Visible = True
+Text6(1).Visible = True
+Text6(2).Visible = True
+Text6(3).Visible = True
+Text6(4).Visible = True
+Text6(5).Visible = True
+Text6(0).Visible = True
+End If
+End Sub
+Private Sub Combo3_Click(Index As Integer)
+Dim ADORS2 As ADODB.Recordset
+Dim var2 As Integer
+Dim var3 As Integer
+Dim db As Connection
+Set db = New Connection
+db.Open "Provider=MSDASQL.1;Persist Security Info=False;Data Source=NATH"
+Set ADORS2 = New ADODB.Recordset
+Adodc1.RecordSource = "select * from fixed where f_code ='" &
+RTrim(LTrim(DBCombo1.Text)) & "' and tdate = '" & RTrim(LTrim(Text8.Text)) & "'"
+Adodc1.Refresh
+ADORS2.Open "select * from fixed", db, adOpenStatic, adLockOptimistic
+var2 = ADORS2.Fields!t_res_eco_seat
+Text6(Index).Text = var2 + 1
+End Sub
+Private Sub Command1_Click()
+Text2.Text = Val(Text4(0).Text) + Val(Text4(1).Text) + Val(Text4(2).Text) + Val(Text4(3).Text)
++ Val(Text4(4).Text) + Val(Text4(5).Text)
+End Sub
+Private Sub DBCombo1_Change()
+On Error Resume Next
+MSRDC 1.Result Set.Bookmark = DBCombo1.SelectedItem
+End Sub
+Private Sub DBCombo1_Click(Area As Integer)
+On Error Resume Next
+MSRDC1.Resultset.Bookmark = DBCombo1.SelectedItem
+End Sub
+Private Sub Form_Load()
+Dim db As Connection
+Set db = New Connection
+db.Open "Provider=MSDASQL.1;Persist Security Info=False;Data Source=NATH"
+Set adors = New Recordset
+ADORS2.Open "select
+ticket_no,pnr,flight_id,source,destination,t_date,d_time,a_time,fare1,fare2,fare3,fare4,fare5,far
+e6,class,age1,sex1,seat1,age1,sex1,seat1,age2,sex2,seat2,age3,sex3,seat3,age4,sex4,seat4,age5,
+sex5,seat5,age6,sex6,seat6,passenger from ticket_report", db, adOpenStatic, adLockOptimistic
+Dim otext As TextBox
+For Each otext In Me.Text1
+Set otext.DataSource = adors
+Next
+db.Open "Provider=MSDASQL.1;Persist Security Info=False;Data Source=NATH"
+Set adors = New Recordset
+Set adors1 = New Recordset
+Set ADORS2 = New Recordset
+adors1.Open "select max(TICKET_NO)from ticket_report", db, adOpenStatic,
+adLockOptimistic
+ADORS2.Open "select max(pnr) from ticket_report", db, adOpenStatic, adLockOptimistic
+var1 = adors1.Fields(0)
+var2 = ADORS2.Fields(0)
+Text1(0) = var1 + 1
+Text1(17) = var2 + 1
+adors.Open "select * FROM FARE", db, adOpenStatic, adLockOptimistic
+Set Text1(1).DataSource = adors
+Set Text1(2).DataSource = adors
+Set Text1(3).DataSource = adors
+Set Text1(4).DataSource = adors
+End Sub
+Private Sub PRINT_Click()
+Ticket_report.Print
+End Sub
+Private Sub save_Click()
+adors.UpdateBatch adAffectAllChapters
+End Sub
+Text3_LostFocus(Index As Integer)
+Dim temp As Double
+If Val(Text3(Index).Text) > 60 Then
+temp = (5 * Val(Text5.Text) / 100)
+MsgBox (temp)
+Text4(Index).Text = temp
+Else
+temp = Val(Text5.Text)
+End If
+Text4(Index).Text = temp
+End Sub
+
+Coding for Cancellation
+
+Option Explicit
+Dim adors As Recordset
+Private Sub CANCEL_Click()
+Dim SQL As String
+Dim db As Connection
+Set db = New Connection
+db.Open "Provider=MSDASQL.1;Persist Security Info=False;Data Source=NATH"
+SQL = "DELETE FROM TICKET_REPORT WHERE PNR='" & txtfields(0).Text & "'"
+db.Execute SQL
+End Sub
+Private Sub Command3_Click()
+Unload Me
+End Sub
+Private Sub Form_Load()
+Dim db As Connection
+Set db = New Connection
+db.Open "Provider=MSDASQL.1;Persist Security Info=False;Data Source=NATH"
+Set adors = New Recordset
+adors.Open "select
+CUST_CODE,CLASS,SEAT_NO,DAYS_LEFT,HOURS_LEFT,BASIC_AMMOUNT,CANC
+EL_AMMOUNT FROM REFUND_AMMOUNT", db, adOpenStatic, adLockOptimistic
+Dim otext As TextBox
+For Each otext In Me.txtfields
+Set otext.DataSource = adors
+Next
+End Sub
+Private Sub SHOW_Click()
+Dim ADORS2 As Recordset
+Dim db As Connection
+Set db = New Connection
+db.Open "Provider=MSDASQL.1;Persist Security Info=False;Data Source=NATH"
+Set ADORS2 = New Recordset
+ADORS2.Open "select * from TICKET_REPORT WHERE PNR = ' " & txtfields(0).Text & " '
+", db, adOpenStatic, adLockOptimistic
+'txtfields(0) = (ADORS2.Fields(1))
+txtfields(1) = (ADORS2.Fields(8))
+txtfields(2) = (ADORS2.Fields(7))
+txt_basic_ammount.Text = (ADORS2.Fields(9))
+End Sub
+Private Sub txtfields_LostFocus(Index As Integer)
+Dim db As Connection
+If Index = 0 Then
+Set db = New Connection
+db.Open "Provider=MSDASQL.1;Persist Security Info=False;Data Source=NATH"
+Set adors = New Recordset
+adors.Open "select
+CUST_CODE,CLASS,SEAT_NO,DAYS_LEFT,HOURS_LEFT,BASIC_AMMOUNT,CANC
+EL_AMMOUNT FROM REFUND_AMMOUNT where cust_code = ('" & txtfields(0).Text &
+"')", db, adOpenStatic, adLockOptimistic
+Dim otext As TextBox
+For Each otext In Me.txtfields
+Set otext.DataSource = adors
+Next
+End If
+End Sub
+Private Sub txtsub_Click()
+txtresult(7).Text = Val(txt_basic_ammount.Text) - Val(txt_cancel_ammount(6).Text)
+End Sub
+Coding for Enquiry 
+Option Explicit
+Dim adors As Recordset
+Private Sub add_Click(Index As Integer)
+With adors
+.AddNew
+End With
+End Sub
+Private Sub cl_Click(Index As Integer)
+Unload Me
+End Sub
+Private Sub CONFIRM_Click()
+Dim ADORS2 As Recordset
+Dim db As Connection
+Set db = New Connection
+db.Open "Provider=MSDASQL.1;Persist Security Info=False;Data Source=NATH"
+Set ADORS2 = New Recordset
+ADORS2.Open "select * from TICKET_REPORT WHERE TICKET_NO ='" &
+txtfields(7).Text & "'", db, adOpenStatic, adLockOptimistic
+txtfields(4) = (ADORS2.Fields(1))
+txtfields(1) = (ADORS2.Fields(2))
+txtfields(2) = (ADORS2.Fields(9))
+txtfields(3) = (ADORS2.Fields(7))
+txtfields(5) = (ADORS2.Fields(5))
+txtfields(6) = (ADORS2.Fields(6))
+End Sub
